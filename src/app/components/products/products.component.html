@@ -1,0 +1,33 @@
+<div class="filters">
+  <a class="all-filter">
+    <img src="{{ assets.all_products }}" alt="All Products" />
+    <h6>All Products</h6>
+  </a>
+  <a class="electronic-filter">
+    <img src="{{ assets.electronics_products }}" alt="Electronics" />
+    <h6>Electronics</h6>
+  </a>
+  <a class="fashion-filter">
+    <img src="{{ assets.fashion_products }}" alt="Fashion" />
+    <h6>Fashion</h6>
+  </a>
+  <a class="jewellery-filter">
+    <img src="{{ assets.jewellery_products }}" alt="Jewellery" />
+    <h6>Jewellery</h6>
+  </a>
+</div>
+<div class="products-container">
+  <div *ngFor="let product of productList" class="products-list">
+    <div class="product-card">
+      <div class="image">
+        <img src="{{ product.image }}" alt="{{ product.title }}" />
+      </div>
+      <h5 class="name">{{ product.title }}</h5>
+      <p class="description">{{ product.description }}</p>
+      <p class="price">
+        Price: <span> $ {{ product.price }}</span>
+      </p>
+      <button (click)="addToCart(product)">Add to cart</button>
+    </div>
+  </div>
+</div>

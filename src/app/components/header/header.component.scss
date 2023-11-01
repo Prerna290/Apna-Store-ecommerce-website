@@ -1,0 +1,39 @@
+.navbar {
+  @apply flex md:flex-row flex-col md:justify-between justify-center bg-blue-500 shadow-sm px-10 py-4;
+
+  .left-navbar {
+    @apply flex md:flex-row flex-col md:w-auto w-full;
+    .brand {
+      @apply flex md:items-center text-white justify-center md:mb-0 mb-2;
+      .brand-logo {
+        @apply text-4xl;
+      }
+
+      .brand-name {
+        @apply text-3xl ml-3;
+      }
+    }
+
+    .search {
+      @apply flex items-center md:ml-10 ml-0 text-white md:mb-0 mb-2;
+      input {
+        @apply md:w-[600px] w-full rounded-md p-2;
+      }
+      .search-icon {
+        @apply text-gray-400 absolute z-10 md:left-[38%%] left-[80%];
+      }
+    }
+  }
+
+  .cart {
+    @apply flex justify-end text-white;
+
+    .cart-icon {
+      @apply text-2xl;
+    }
+
+    .badge {
+      @apply bg-red-500 p-1 ml-1;
+    }
+  }
+}

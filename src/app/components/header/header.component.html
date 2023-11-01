@@ -1,0 +1,18 @@
+<!-- <header> -->
+<div class="navbar">
+  <div class="left-navbar">
+    <div class="brand" [routerLink]="'/products'">
+      <fa-icon class="brand-logo" [icon]="faTruckFast"></fa-icon>
+      <p class="brand-name">Apna Store</p>
+    </div>
+    <div class="search">
+      <input type="text" placeholder="Search Products" />
+      <!-- <fa-icon class="search-icon" [icon]="faMagnifyingGlass"></fa-icon> -->
+    </div>
+  </div>
+  <div class="cart" [routerLink]="'/cart'">
+    <fa-icon class="cart-icon" [icon]="faCartShopping"></fa-icon>
+    <span class="badge">{{ totalCartItem }}</span>
+  </div>
+</div>
+<!-- </header> -->
