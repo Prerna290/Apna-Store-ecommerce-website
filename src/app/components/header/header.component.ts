@@ -16,13 +16,17 @@ export class HeaderComponent {
   faMagnifyingGlass = faMagnifyingGlass;
   faCartShopping = faCartShopping;
   totalCartItem = 0;
+  searchedTerm = '';
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.cartService.getTotalCartItem().subscribe((length) => {
-      console.log(length);
       this.totalCartItem = length;
     });
+  }
+
+  search(event: any) {
+    this.cartService.searchedTerm.next(this.searchedTerm);
   }
 }

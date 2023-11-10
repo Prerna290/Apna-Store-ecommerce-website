@@ -8,12 +8,12 @@ export class CartService {
   totalCartItem = new BehaviorSubject<number>(0);
   cartListItem: any[] = [];
   productList = new BehaviorSubject<any>([]);
+  searchedTerm = new BehaviorSubject<string>('');
 
   constructor() {}
 
   getProducts() {
     // this.productList.next(this.cartListItem);
-    // console.log(this.productList.value.length, 'products list');
     return this.productList.asObservable();
   }
 
@@ -30,12 +30,8 @@ export class CartService {
   addToCart(product: any) {
     this.cartListItem.push(product);
     this.productList.next([...this.cartListItem]);
-    console.log(this.getTotalCartItem(), '11');
     this.totalCartItem.next(this.cartListItem.length);
-    console.log(this.getTotalCartItem(), '22');
-    // console.log(this.totalItems, 'length 1');
     // this.totalItems.next(this.productList.value.length);
-    // console.log(this.totalItems, 'length 2');
     // this.getProducts();
     // this.productList.next(this.cartListItem);;
     this.getTotalPrice();

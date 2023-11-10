@@ -1,23 +1,26 @@
 <div class="filters">
-  <a class="all-filter">
+  <a (click)="filter('')" class="all-filter">
     <img src="{{ assets.all_products }}" alt="All Products" />
     <h6>All Products</h6>
   </a>
-  <a class="electronic-filter">
+  <a (click)="filter('electronics')" class="electronic-filter">
     <img src="{{ assets.electronics_products }}" alt="Electronics" />
     <h6>Electronics</h6>
   </a>
-  <a class="fashion-filter">
+  <a (click)="filter('fashion')" class="fashion-filter">
     <img src="{{ assets.fashion_products }}" alt="Fashion" />
     <h6>Fashion</h6>
   </a>
-  <a class="jewellery-filter">
+  <a (click)="filter('jewelery')" class="jewellery-filter">
     <img src="{{ assets.jewellery_products }}" alt="Jewellery" />
     <h6>Jewellery</h6>
   </a>
 </div>
 <div class="products-container">
-  <div *ngFor="let product of productList" class="products-list">
+  <div
+    *ngFor="let product of filteredList | filter : searchedTerm : 'title'"
+    class="products-list"
+  >
     <div class="product-card">
       <div class="image">
         <img src="{{ product.image }}" alt="{{ product.title }}" />

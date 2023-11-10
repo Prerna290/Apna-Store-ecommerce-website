@@ -6,7 +6,12 @@
       <p class="brand-name">Apna Store</p>
     </div>
     <div class="search">
-      <input type="text" placeholder="Search Products" />
+      <input
+        type="text"
+        placeholder="Search Products"
+        [(ngModel)]="searchedTerm"
+        (keyup)="search($event)"
+      />
       <!-- <fa-icon class="search-icon" [icon]="faMagnifyingGlass"></fa-icon> -->
     </div>
   </div>

@@ -11,6 +11,8 @@ import { assets } from 'src/assets/assets';
 export class ProductsComponent {
   assets = assets;
   productList: any;
+  filteredList: any;
+  searchedTerm = '';
 
   constructor(
     private apiService: ApiService,
@@ -20,19 +22,32 @@ export class ProductsComponent {
   ngOnInit() {
     this.apiService.getProduct().subscribe((data) => {
       this.productList = data;
+      this.filteredList = data;
       this.productList.forEach((item: any) => {
+        if (
+          item.category === "men's clothing" ||
+          item.category === "women's clothing"
+        ) {
+          item.category = 'fashion';
+        }
         item.total = item.price;
         item.quantity = 1;
-        //   Object.assign(a, { quantity: 1, total: a.price });
       });
-
-      // this.productList = data.map((item: any) => {
-
-      // });
+    });
+    this.cartService.searchedTerm.subscribe((value) => {
+      this.searchedTerm = value;
     });
   }
 
   addToCart(product: any) {
     this.cartService.addToCart(product);
+  }
+
+  filter(category: string) {
+    this.filteredList = this.productList.filter((item: any) => {
+      if (item.category === category || category === '') {
+        return item;
+      }
+    });
   }
 }

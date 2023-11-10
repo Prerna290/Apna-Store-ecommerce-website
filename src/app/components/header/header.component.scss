@@ -15,7 +15,7 @@
     }
 
     .search {
-      @apply flex items-center md:ml-10 ml-0 text-white md:mb-0 mb-2;
+      @apply flex items-center md:ml-10 ml-0 md:mb-0 mb-2;
       input {
         @apply md:w-[600px] w-full rounded-md p-2;
       }
