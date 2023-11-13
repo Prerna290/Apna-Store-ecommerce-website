@@ -9,8 +9,8 @@
     img {
       @apply w-16 h-10 mb-2;
     }
-    h6 {
-      @apply text-gray-700 font-semibold text-center;
+    h5 {
+      @apply font-semibold text-center;
     }
   }
 
@@ -18,10 +18,14 @@
   .electronic-filter:hover,
   .fashion-filter:hover,
   .jewellery-filter:hover {
-    h6 {
+    h5 {
       @apply text-blue-500;
     }
   }
+}
+
+.selected {
+  @apply text-blue-500;
 }
 
 .products-container {

@@ -10,7 +10,9 @@ export class CartService {
   productList = new BehaviorSubject<any>([]);
   searchedTerm = new BehaviorSubject<string>('');
 
-  constructor() {}
+  constructor() {
+    this.retrieveData();
+  }
 
   getProducts() {
     // this.productList.next(this.cartListItem);
@@ -25,16 +27,24 @@ export class CartService {
     this.cartListItem.push(...product);
     this.productList.next(product);
     this.totalCartItem.next(this.cartListItem.length);
+    this.saveData();
   }
 
   addToCart(product: any) {
+    this.cartListItem.forEach((element) => {
+      if (element.id === product.id) {
+        console.log('entered if');
+        // element.quantity++;
+      } else {
+        console.log('entered else');
+        // this.cartListItem.push(product);
+      }
+    });
     this.cartListItem.push(product);
     this.productList.next([...this.cartListItem]);
     this.totalCartItem.next(this.cartListItem.length);
-    // this.totalItems.next(this.productList.value.length);
-    // this.getProducts();
-    // this.productList.next(this.cartListItem);;
     this.getTotalPrice();
+    this.saveData();
   }
 
   getTotalPrice(): number {
@@ -53,11 +63,26 @@ export class CartService {
     });
     this.productList.next([...this.cartListItem]);
     this.totalCartItem.next(this.cartListItem.length);
+    this.saveData();
   }
 
   removeAllItems() {
     this.cartListItem = [];
     this.productList.next(this.cartListItem);
     this.totalCartItem.next(this.cartListItem.length);
+    this.saveData();
+  }
+
+  saveData() {
+    localStorage.setItem('cartData', JSON.stringify(this.cartListItem));
+  }
+
+  retrieveData() {
+    const storedData = localStorage.getItem('cartData');
+    if (storedData) {
+      this.cartListItem = JSON.parse(storedData);
+      this.productList.next([...this.cartListItem]);
+      this.totalCartItem.next(this.cartListItem.length);
+    }
   }
 }

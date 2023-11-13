@@ -13,6 +13,7 @@ export class ProductsComponent {
   productList: any;
   filteredList: any;
   searchedTerm = '';
+  selectedItem = '';
 
   constructor(
     private apiService: ApiService,
@@ -34,6 +35,10 @@ export class ProductsComponent {
         item.quantity = 1;
       });
     });
+
+    // this.cartService.getTotalCartItem().subscribe((length) => {
+    //   console.log(length);
+    // });
     this.cartService.searchedTerm.subscribe((value) => {
       this.searchedTerm = value;
     });
@@ -44,6 +49,7 @@ export class ProductsComponent {
   }
 
   filter(category: string) {
+    this.selectedItem = category;
     this.filteredList = this.productList.filter((item: any) => {
       if (item.category === category || category === '') {
         return item;
