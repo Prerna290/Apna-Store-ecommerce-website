@@ -1,9 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Pipe({
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
+  constructor(private cartService: CartService) {}
   transform(value: any[], filterString: string, propertyName: string) {
     const results: any = [];
     if (!value || filterString === '' || propertyName === '') {
@@ -16,6 +18,7 @@ export class FilterPipe implements PipeTransform {
         results.push(result);
       }
     });
+    this.cartService.totalProductAfterFilter.next(results.length);
     return results;
   }
 }

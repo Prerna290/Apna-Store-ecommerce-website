@@ -17,13 +17,14 @@ export class ProductsComponent {
 
   constructor(
     private apiService: ApiService,
-    private cartService: CartService
+    public cartService: CartService
   ) {}
 
   ngOnInit() {
     this.apiService.getProduct().subscribe((data) => {
       this.productList = data;
       this.filteredList = data;
+      this.cartService.totalProductAfterFilter.next(Object.keys(data).length);
       this.productList.forEach((item: any) => {
         if (
           item.category === "men's clothing" ||
@@ -35,10 +36,6 @@ export class ProductsComponent {
         item.quantity = 1;
       });
     });
-
-    // this.cartService.getTotalCartItem().subscribe((length) => {
-    //   console.log(length);
-    // });
     this.cartService.searchedTerm.subscribe((value) => {
       this.searchedTerm = value;
     });
@@ -55,5 +52,6 @@ export class ProductsComponent {
         return item;
       }
     });
+    this.cartService.totalProductAfterFilter.next(this.filteredList.length);
   }
 }

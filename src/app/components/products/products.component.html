@@ -23,7 +23,10 @@
     *ngFor="let product of filteredList | filter : searchedTerm : 'title'"
     class="products-list"
   >
-    <div class="product-card">
+    <div
+      *ngIf="cartService.totalProductAfterFilter.value > 0"
+      class="product-card"
+    >
       <div class="image">
         <img src="{{ product.image }}" alt="{{ product.title }}" />
       </div>
@@ -35,4 +38,15 @@
       <button (click)="addToCart(product)">Add to cart</button>
     </div>
   </div>
+</div>
+<div
+  *ngIf="
+    cartService.totalProductAfterFilter.value === 0 &&
+    this.cartService.searchedTerm.value !== ''
+  "
+  class="no-result-found"
+>
+  <img
+    src="https://cdn.dribbble.com/users/898770/screenshots/3744292/search-bar.gif"
+  />
 </div>

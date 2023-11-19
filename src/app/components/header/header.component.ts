@@ -19,25 +19,13 @@ export class HeaderComponent {
   searchedTerm = '';
 
   constructor(private cartService: CartService) {}
-  ngOnInit() {
-    this.cartService.totalCartItem.subscribe((value) => {
-      // console.log(value);
-      // this.totalCartItem = value;
-      // this.cartService.totalCartItem.next(this.totalCartItem);
-    });
-    // console.log(this.cartService.totalCartItem.getValue());
-    // this.cartService.getTotalCartItem().subscribe((length) => {
-    //   this.totalCartItem = length;
-    //   console.log(this.cartService.totalCartItem.getValue());
-    //   // this.cartService.totalCartItem.next(this.searchedTerm);
-    // });
-  }
+  // ngOnInit() {
+  //   this.cartService.totalCartItem.subscribe((value) => {});
+  // }
 
   ngDoCheck() {
-    // console.log('called');
     this.cartService.totalCartItem.subscribe((value) => {
       this.totalCartItem = value;
-      // console.log(this.totalCartItem);
     });
   }
 

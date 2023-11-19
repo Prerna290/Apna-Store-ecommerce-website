@@ -9,6 +9,7 @@ export class CartService {
   cartListItem: any[] = [];
   productList = new BehaviorSubject<any>([]);
   searchedTerm = new BehaviorSubject<string>('');
+  totalProductAfterFilter = new BehaviorSubject<number>(0);
 
   constructor() {
     this.retrieveData();
@@ -31,16 +32,15 @@ export class CartService {
   }
 
   addToCart(product: any) {
-    this.cartListItem.forEach((element) => {
-      if (element.id === product.id) {
-        console.log('entered if');
-        // element.quantity++;
-      } else {
-        console.log('entered else');
-        // this.cartListItem.push(product);
-      }
-    });
-    this.cartListItem.push(product);
+    const existingProductIndex = this.cartListItem.findIndex(
+      (element) => element.id === product.id
+    );
+
+    if (existingProductIndex !== -1) {
+      this.cartListItem[existingProductIndex].quantity++;
+    } else {
+      this.cartListItem.push({ ...product });
+    }
     this.productList.next([...this.cartListItem]);
     this.totalCartItem.next(this.cartListItem.length);
     this.getTotalPrice();

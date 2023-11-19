@@ -13,14 +13,42 @@
   </div>
 </ng-container>
 <ng-container *ngIf="products.length > 0">
-  <div class="container products-table">
-    <table>
+  <div class="products-container">
+    <div *ngFor="let product of products; let i = index">
+      <!-- {{ i + 1 }} -->
+      <div class="product-card">
+        <div class="image">
+          <img src="{{ product.image }}" alt="{{ product.title }}" />
+        </div>
+        <div class="details">
+          <h5 class="name">{{ product.title }}</h5>
+          <p class="price">
+            Price: <span> $ {{ product.price }}</span>
+          </p>
+          <p class="quantity">
+            Quantity: <span> {{ product.quantity }}</span>
+          </p>
+          <div class="grand-total">
+            <p class="total">
+              Total:
+              <span>
+                $
+                {{ product.price * product.quantity | number : "1.2-2" }}</span
+              >
+            </p>
+            <button (click)="removeProduct(product)" class="trash-icon">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <table>
       <thead>
         <tr>
           <th>S.no.</th>
           <th>Product Name</th>
           <th>Product Image</th>
-          <!-- <th>Description</th> -->
           <th>Price</th>
           <th>Quantity</th>
           <th>Total</th>
@@ -36,7 +64,7 @@
           <td>{{ product.quantity }}</td>
           <td>{{ product.price * product.quantity }}</td>
           <td>
-            <button (click)="removeProduct(product)">
+            <button (click)="removeProduct(product)" class="trash-icon">
               <fa-icon [icon]="faTrash"></fa-icon>
             </button>
           </td>
@@ -51,11 +79,19 @@
           <td>
             <button class="checkout">Checkout</button>
           </td>
-          <td>
-            <strong>Grand Total: $ {{ grandTotal }}</strong>
+          <td class="grand-total">
+            <strong>Grand Total: $ {{ grandTotal | number : "1.2-2" }}</strong>
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
+  </div>
+  <div class="actions">
+    <button class="empty-cart" (click)="emptyCart()">Empty Cart</button>
+    <button class="shop-more" routerLink="/products">Shop More</button>
+    <button class="checkout">Checkout</button>
+    <p class="grand-total">
+      <strong>Grand Total: $ {{ grandTotal | number : "1.2-2" }}</strong>
+    </p>
   </div>
 </ng-container>
