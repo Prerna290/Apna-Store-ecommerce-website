@@ -19,10 +19,7 @@ export class HeaderComponent {
   searchedTerm = '';
 
   constructor(private cartService: CartService) {}
-  // ngOnInit() {
-  //   this.cartService.totalCartItem.subscribe((value) => {});
-  // }
-
+  
   ngDoCheck() {
     this.cartService.totalCartItem.subscribe((value) => {
       this.totalCartItem = value;

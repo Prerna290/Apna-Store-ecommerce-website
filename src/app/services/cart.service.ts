@@ -16,7 +16,6 @@ export class CartService {
   }
 
   getProducts() {
-    // this.productList.next(this.cartListItem);
     return this.productList.asObservable();
   }
 
