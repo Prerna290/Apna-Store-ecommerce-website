@@ -37,7 +37,8 @@
               >
             </p>
             <button (click)="removeProduct(product)" class="trash-icon">
-              <fa-icon [icon]="faTrash"></fa-icon>
+              Delete
+              <!-- <fa-icon [icon]="faTrash"></fa-icon> -->
             </button>
           </div>
         </div>
@@ -91,7 +92,7 @@
     <button class="shop-more" routerLink="/products">Shop More</button>
     <button class="checkout">Checkout</button>
     <p class="grand-total">
-      <strong>Grand Total: $ {{ grandTotal | number : "1.2-2" }}</strong>
+      Grand Total: $ {{ grandTotal | number : "1.2-2" }}
     </p>
   </div>
 </ng-container>
