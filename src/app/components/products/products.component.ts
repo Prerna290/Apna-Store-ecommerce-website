@@ -14,6 +14,7 @@ export class ProductsComponent {
   filteredList: any;
   searchedTerm = '';
   selectedItem = '';
+  jewellery_products = '/assets/images/jewellery.jpg';
 
   constructor(
     private apiService: ApiService,
